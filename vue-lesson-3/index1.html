@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+            <button v-on:click.stop="showsome(111111, $event)">
+                click me!!!
+            </button>
+            <a href="https://www.baidu.com" target="blank" v-on:click.prevent="showsome(111,$event)">link me!!!</a>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: "#app",
+        methods: {
+            showsome: function (msg, event) {
+                console.log(event);
+                console.log(msg);
+                //alert("show something");
+            }
+        }
+    })
+</script>
+
+</html>

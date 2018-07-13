@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="password">
+        {{password}}
+        <ol >
+            <li v-for="s in subs">
+                {{s.name}}
+                <ul >
+                    <li v-for="ss in s.sub">
+                        {{ss}}
+                    </li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            password:"",
+            subs:[{
+                name:"javascript", sub:["vue", "react", "angulajs"]
+            },{
+                name:"database", sub:["mysql", "oracal", "sqlserver"]
+            },{
+                name:"system", sub:["macOs", "linux", "windows"]
+            }]
+        }
+    })
+</script>
+</html>

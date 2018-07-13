@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>{{num}}</div>
+        <div>{{fullName}}</div>
+        <div>{{getFullName()}}</div>
+        <button v-on:click = "num++">add</button>
+        <button v-on:click = "changeName">change</button>
+        <button v-on:click = "changeFullName">changeFullName</button>
+    </div>
+
+    <script>
+        new Vue({
+            el:"#app",
+            data: {
+                num : 0,
+                firstName:"chengyu",
+                lastName:"li"
+            },
+            computed : {
+                fullName : {
+                    get:function(){
+                        console.log("我执行了get");
+                        return this.lastName + " " + this.firstName;
+                    },
+                    set:function(newName){
+                        var arr = newName.split(" ");
+                        this.lastName = arr[0];
+                        this.firstName = arr[1];
+                        console.log(newName);
+                    }
+                }
+            },
+            methods:{
+                changeName : function(){
+                    console.log("我是changeName，我执行了");
+                    this.firstName = "yu";
+                    this.lastName = "kanghua";
+                },
+                getFullName: function(){
+                    console.log("我是getFullName，我执行了")
+                    return this.lastName + " " + this.firstName;
+                },
+                changeFullName:function(){
+                    this.fullName = "xiaohong";
+                }
+            }
+        })
+    </script>
+</body>
+</html>

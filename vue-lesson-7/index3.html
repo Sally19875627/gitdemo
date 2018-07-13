@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<style>
+    .shape{
+        height:150px;
+        width:150px;
+        float:left;
+        margin:10px;
+    }
+
+    .circle{
+        background:red;
+        border-radius: 50%;
+
+    }
+    .square{
+        background-color:blue;
+    }
+    .triangle{
+        width:0;
+        height:0;
+    }
+
+    .up{
+        border-left:100px solid transparent;
+        border-right: 100px solid transparent;
+        border-bottom: 150px solid orange;
+    }
+    .down{
+        border-left:100px solid transparent;
+        border-right: 100px solid transparent;
+        border-top: 150px solid green;
+    }
+    .animation{
+        animation:strentch 1.0s ease-out;
+    }
+    @keyframes strentch{
+        0%{
+            transform: scale(0.3);
+        }
+        100%{
+            transform: scale(1);
+        }
+    }
+</style>
+<body>
+    <div id="app">
+        <div>
+            <div v-for="shape in shapes" class = "shape" v-bind:class="[shape.shape, shape.direction?shape.direction:'', {animation : shape.animation?shape.animation:''}]"></div>
+        </div>
+        <div>
+            <div class="shape circle"></div>
+            <div class="shape square"></div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                shapes:[{
+                    shape : 'circle',
+                    animation:true
+                },{
+                    shape : 'square'
+                },{
+                    shape : 'triangle',
+                    direction:"down",
+                    animation:true
+                },{
+                    shape : 'triangle',
+                    direction:"up"
+                }]
+            },
+            computed:{
+                styles1 :function(){
+                    return{
+                        background : this.color
+                    }
+                },
+                styles2:function(){
+                    return{
+                        'border-radius' : "100px"
+                    }
+                }
+            },
+            methods:{
+                change:function(){
+                    if(this.color ==="yellow"){
+                        this.color = "red";
+                    }else{
+                        this.color = "yellow"
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

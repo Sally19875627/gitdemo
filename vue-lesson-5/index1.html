@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>电影列表</h1>
+        <ul>
+            <li v-for = "(title, index) in movies">{{title}}({{index}})</li>
+        </ul>
+
+        <table>
+            <thead>
+                <td>员工姓名</td>
+                <td>职位</td>
+                <td>索引</td>
+                <td>公司</td>
+                
+            </thead>
+            <tbody>
+                <tr v-for="(person, index) in persons">
+                    <td>{{person.name}}</td>
+                    <td>{{person.title}}</td>
+                    <td>{{index}}</td>
+                    <td>{{componey}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div v-for = "(name, prop, idx) in person">{{prop}} : {{name}} ({{idx}})</div>
+        <div v-for = "n in 10" >{{n}}</div>
+        <div>
+            <ul>
+                <li v-for = "n in numbers">
+                    {{n}}
+                </li>
+            </ul>
+            <button v-on:click = "changeNumber">changeNumber</button>
+        </div>
+
+        <div v-for="item in person1s" v-bind:key="item.id">
+            {{item.name}}
+            {{item.id}}
+            <input type="text">
+        </div>
+
+        <button v-on:click="add">click me</button>
+        <button v-on:click="reverse">reverse</button>
+    </div>
+    <script>
+        new Vue({
+            el:"#app",
+            data: {
+                movies:["妖猫传", "芳华", "至暗时刻"],
+                persons : [{
+                    name:"liue",
+                    title:"vue"
+                },
+                {
+                    name:"xiaohua",
+                    title:"javascript"
+                },{
+                    name:"xiaoming",
+                    title:"css"
+                }], 
+                componey:"vue",
+                person : {
+                    firstName:"liu",
+                    lastName:"luwei",
+                    age:20
+                },
+                numbers:[1,2,3,4,5],
+                person1s:[{
+                    id:1,
+                    name:"li"
+                },{
+                    id:2,
+                    name:"cheng"
+                },{
+                    id:3,
+                    name:"yu"
+                }]
+            },
+            methods:{
+                changeNumber:function(){
+                    Vue.set(this.numbers, 1, 10);
+                    console.log(this.numbers);
+                },
+                add:function(){
+                    this.person1s.push({
+                        id:4,
+                        name:"kanghua"
+                    })
+                },
+                reverse : function(){
+                    this.person1s.reverse()
+                }
+            },
+            
+        })
+    </script>
+</body>
+</html>
